@@ -1,22 +1,23 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import dianyingRouter from "./dianying"
+import yingyuanRouter from "./yingyuan"
+import wodeRouter from "./wode"
+import Error from "@/views/404"
 
 Vue.use(VueRouter)
 
 const routes = [
+  dianyingRouter,
+  yingyuanRouter,
+  wodeRouter,
   {
-    path: '/',
-    name: 'Home',
-    component: Home
+    path:"/",//当上面所有的路由都匹配不上的时候，重定向到电影页面
+    redirect:"/dianying"
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
+    path:"*",//当用户随便输入一个地址的时候，会切换到404页面
+    component:Error
   }
 ]
 
